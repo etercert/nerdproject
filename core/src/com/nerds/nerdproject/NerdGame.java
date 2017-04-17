@@ -16,8 +16,8 @@ public class NerdGame extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
-		ServerClient server = new ServerClient();
-		Gdx.app.log("info", "inisde create!");
+		final ServerClient server = new ServerClient();
+
 		server.setListener(new ServerClientListener() {
 			@Override
 			public void onRegSucces() {
@@ -27,6 +27,7 @@ public class NerdGame extends ApplicationAdapter {
 			@Override
 			public void onRegFail(String reason) {
 				Gdx.app.log("<DEBUG>", "regFail " + reason);
+                server.getNameSuggestion("johnsmith");
 			}
 
 			@Override
@@ -36,7 +37,7 @@ public class NerdGame extends ApplicationAdapter {
 
 			@Override
 			public void onPlayer2Move(PlayerMove move) {
-				Gdx.app.log("<DEBUG>", "Player 2 move: " + move.x + " " + move.y + " " + move.time);
+				Gdx.app.log("<DEBUG>", "Player 2 move: " + move.x + " " + move.y + " " + move.duration);
 			}
 
 			@Override
@@ -58,6 +59,12 @@ public class NerdGame extends ApplicationAdapter {
 			public void onPlayer2Unavailable() {
 				Gdx.app.log("<DEBUG>", "player 2 unavailable");
 			}
+
+			@Override
+			public void onConnected() {}
+
+			@Override
+			public void onConnectionError() {}
 		});
 
 		server.connect();

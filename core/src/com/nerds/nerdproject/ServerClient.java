@@ -18,7 +18,7 @@ public class ServerClient {
     private Socket socket;
     private ServerClientListener listener;
 
-    private static URI url = URI.create("http://192.168.0.108:8080");
+    private static URI url = URI.create("http://localhost:8080");
 
     public void setListener(ServerClientListener listener){
         this.listener = listener;
@@ -37,7 +37,7 @@ public class ServerClient {
     }
 
     public void getNameSuggestion(String name) {
-
+        socket.emit("getSuggestion", name);
     }
 
     public ServerClient() {
@@ -46,28 +46,21 @@ public class ServerClient {
         this.socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args){
-                socket.emit("test");
-
+                listener.onConnected();
             }
         });
 
         this.socket.on(Socket.EVENT_CONNECT_ERROR, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                try {
-                    JSONObject obj = (JSONObject) args[0];
-
-                } catch (Exception e){
-
-                }
+                listener.onConnectionError();
                 }
         });
-
 
         this.socket.on(Socket.EVENT_CONNECT_TIMEOUT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-
+                listener.onConnectionError();
             }
         });
 
@@ -112,16 +105,18 @@ public class ServerClient {
                 int x = -1;
                 int y = -1;
                 double time = -1;
+                double duration = -1;
                 try {
                     JSONObject obj = (JSONObject) args[0];
                     x = obj.getInt("x");
                     y = obj.getInt("y");
                     time = obj.getDouble("t");
+                    duration = obj.getDouble("d");
                 } catch (JSONException e){
 
                 }
 
-                listener.onPlayer2Move(new PlayerMove(x, y, time));
+                listener.onPlayer2Move(new PlayerMove(x, y, duration, time));
             }
         });
 
@@ -169,5 +164,32 @@ public class ServerClient {
         });
 
 
+    }
+
+    public void findPlayer2(String name){
+        socket.emit("challengePlayer", name);
+    }
+
+    public void findPlayer2(){
+        socket.emit("findChallenge");
+    }
+
+    public void registerName(String name){
+        socket.emit("registerName", name);
+    }
+
+    public void sendMove(PlayerMove move){
+        int x = move.x;
+        int y = move.y;
+        double duration = move.duration;
+        double time = move.time;
+        JSONObject req = new JSONObject();
+        try {
+            req.put("x", x);
+            req.put("y", y);
+            req.put("t", time);
+            req.put("d", duration);
+        } catch (JSONException e) {}
+        socket.emit("m", req);
     }
 }

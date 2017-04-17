@@ -14,4 +14,6 @@ public interface ServerClientListener {
     void onGameSessionStart(String player2Name);
     void onGameSessionStop(String reason);
     void onPlayer2Unavailable();
+    void onConnectionError();
+    void onConnected();
 }
