@@ -21,7 +21,12 @@ public abstract class FrequencyEqualizer {
         ArrayList<Integer> clicksOutput = new ArrayList<>();
         
         int n = clicksInput.size();
-        double mean = clicksInput.stream().mapToInt(Integer::intValue).sum();
+//         Nie możemy tego tak zrobić bo nie ma Javy 8
+//        double mean = clicksInput.stream().mapToInt(Integer::intValue).sum();
+        double mean = 0;
+        for (Integer click: clicksInput) {
+            mean += click;
+        }
         mean = mean/n;
         System.out.println("mean = " + mean);
         
