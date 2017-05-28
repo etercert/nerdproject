@@ -1,0 +1,90 @@
+
+pack.png
+size: 1024,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Background
+  rotate: false
+  xy: 2, 810
+  size: 800, 1200
+  orig: 800, 1200
+  offset: 0, 0
+  index: -1
+RoundedButton
+  rotate: false
+  xy: 804, 1810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonBlue
+  rotate: false
+  xy: 804, 1406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonCyan
+  rotate: false
+  xy: 2, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonGray
+  rotate: false
+  xy: 204, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonGreen
+  rotate: false
+  xy: 204, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonGreyPurple
+  rotate: false
+  xy: 2, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonOrange
+  rotate: false
+  xy: 406, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonPink
+  rotate: false
+  xy: 804, 1608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonRedClicked
+  rotate: false
+  xy: 2, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonWhite
+  rotate: false
+  xy: 204, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+RoundedButtonYell
+  rotate: false
+  xy: 2, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
